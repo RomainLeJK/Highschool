@@ -1,1 +1,72 @@
+from turtle import *
+from random import *
 
+def Dé():
+    goto(-Longeur + 100 * Compteur_x,-Hauteur + 100 * Compteur_y) #Positionne la turtle au début du prochain dé
+    down()
+    for i in range(4): #Dessin d'un carré de côté 100
+        forward(100)
+        left(90)
+    up()
+        
+def Cercle(x,y): #Les arguments de circle() = position par rapport au dé
+    goto(-Longeur + x + 100 * Compteur_x,-Hauteur + y - 10 + 100 * Compteur_y) #-Longeur et -Hauteur = position de référence (en bas à gauche) par rapport à
+    down()                                                                     #laquel la turtle se repèrera et on fait moins le rayon (-10) car la fonction circle() de la turtle ne la prend pas comme centre du cercle
+    circle(8,360)                                                              #+ 100 * Compteur_x et + 100 * Compteur_y
+    up()                                                                       #précisent le dé sur lequel on va tracer
+                                                                               #les cercles
+def Face():
+    Numéro=randint(1,6)
+    Dé()
+    if Numéro==1:
+        Cercle(100 / 2,100 / 2) 
+    elif Numéro==2:
+        Cercle(30,30)
+        Cercle(100 - 30,100 - 30)
+    elif Numéro==3:
+        Cercle(30,30)
+        Cercle(100 - 30,100 - 30)
+        Cercle(100 / 2,100 / 2)
+    elif Numéro==4:
+        Cercle(30,30)
+        Cercle(30,100 - 30)
+        Cercle(100 - 30,30)
+        Cercle(100 - 30,100 - 30)
+    elif Numéro==5:
+        Cercle(30,30)
+        Cercle(30,100 - 30)
+        Cercle(100 - 30,30)
+        Cercle(100 - 30,100 - 30)
+        Cercle(100 / 2,100 / 2)
+    elif Numéro==6:
+        Cercle(30,30)
+        Cercle(30,100 / 2)
+        Cercle(30,100 - 30)
+        Cercle(100 - 30,30)
+        Cercle(100 - 30,100 / 2)
+        Cercle(100 - 30,100 - 30) 
+        
+def Choix():
+    n=int(input("Combiez de dé voulez-vous dessiner? "))
+    return(n)
+        
+def Jeu():
+    Face()
+    
+reset()
+up()
+speed(0)
+ht()
+Longeur, Hauteur=screensize() #On récupère les dimensions de la zone de dessin selon la taille de l'écran
+Compteur_général= 0 #Nombre de dé désiné
+Compteur_x = 0 #Nombre de dé sur la ligne où se trouve la turtle
+Compteur_y = 0 #Nombre de ligne complète
+Nombre_de_dé=Choix()
+while Nombre_de_dé!=Compteur_général:
+    if Compteur_x!=(Longeur//100)*2: #On s'arrête en fonction du nombre maximal de dé pouvant être dessiner sur une ligne
+        Jeu()
+        Compteur_général+= 1
+        Compteur_x += 1
+    else:
+        Compteur_x = 0  #Remet le compteur_x à zéro pour pouvoir redémarrer une ligne à partir de la gauche
+        Compteur_y += 1 #Augmente la hauteur des dé pour ne pas que les lignes se chevauchent
