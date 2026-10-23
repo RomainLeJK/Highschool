@@ -1,0 +1,20 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri par Sélection</title>
+    <link rel="stylesheet" href="../static/style_index.css">
+    <script src="../static/tri.js"></script>
+</head>
+<body>
+    <div class="contenant_general">
+        <div class="titre_fond"><h1>Tri par Sélection</h1></div>
+        <button id="bouton_tri" onclick="afficher_resultat()">TRI</button>
+        <div id="tableau_container">
+            <div id="tableau_original">{{tableau}}</div>
+            <div id="tableau_etapes"></div>
+        </div>
+    </div>
+    <div id="temp_tableau_etapes">{{tableau_etapes}}</div>
+</body>
+</html>
